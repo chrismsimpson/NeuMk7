@@ -9,6 +9,7 @@
 #include "Scanner.h"
 #include "Common.h"
 
+#include "Path/Parser/PathParser.h"
 #include "Path/Tokenizer/PathTokenizer.h"
 #include "Path/Tokens/PathComponent.h"
 #include "Path/Tokens/PathToken.h"
@@ -23,6 +24,8 @@ void printNext(
 
 void printTokenizer();
 
+void printParser();
+
 ///
 
 int main() {
@@ -31,11 +34,13 @@ int main() {
 
     ///
 
+    printParser();
+
     // printDir();
 
     ///
 
-    printTokenizer();
+    // printTokenizer();
 
     ///
 
@@ -44,6 +49,11 @@ int main() {
     ///
 
     return 0;
+}
+
+void printParser() {
+
+    printf("//\n// Parser stuffs\n//\n\n");
 }
 
 void printTokenizer() {
