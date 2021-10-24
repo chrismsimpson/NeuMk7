@@ -1,6 +1,8 @@
 #ifndef PATH_TOKEN_H
 #define PATH_TOKEN_H
 
+#include "../../SourceLocation.h"
+
 #include "PathComponent.h"
 #include "PathPunc.h"
 
@@ -23,4 +25,5 @@ struct PathToken {
 
     const union PathTokenValue value;
 };
+
 #endif
