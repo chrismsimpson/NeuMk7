@@ -87,7 +87,7 @@ void nextWhile(
 
     int i = 0;
 
-    while (!isScannerAtEof(scanner) && test(rawPeek(scanner))) {
+    while (!isScannerAtEof(scanner) && test(unsafePeek(scanner))) {
 
         const struct OptionalChar c = next(scanner);
 
@@ -133,22 +133,22 @@ const struct OptionalChar peek(
 
     ///
 
-    return initOptionalChar(rawPeek(scanner));
+    return initOptionalChar(unsafePeek(scanner));
 }
 
 ///
 
-const char rawPeek(
+const char unsafePeek(
     struct Scanner * scanner) {
 
     char buffer;
 
-    rawPeekLength(scanner, &buffer, 1);
+    unsafePeekLength(scanner, &buffer, 1);
 
     return buffer;
 }
 
-void rawPeekLength(
+void unsafePeekLength(
     struct Scanner * scanner,
     char * buffer,
     const size_t length) {

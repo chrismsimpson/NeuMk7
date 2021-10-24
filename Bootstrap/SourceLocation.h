@@ -3,7 +3,7 @@
 
 struct SourceLocation {
 
-    const int rawPosition;
+    const int position;
     const int lineNumber;
     const int column;
 };

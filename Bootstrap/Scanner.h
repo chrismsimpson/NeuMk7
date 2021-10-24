@@ -60,10 +60,10 @@ extern const struct OptionalChar peek(
 
 ///
 
-extern const char rawPeek(
+extern const char unsafePeek(
     struct Scanner * scanner);
 
-extern void rawPeekLength(
+extern void unsafePeekLength(
     struct Scanner * scanner,
     char * buffer,
     const size_t length);
