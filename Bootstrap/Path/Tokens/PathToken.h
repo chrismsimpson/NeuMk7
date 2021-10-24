@@ -24,6 +24,10 @@ struct PathToken {
     const enum PathTokenType tokenType;
 
     const union PathTokenValue value;
+
+    const struct SourceLocation start;
+
+    const struct SourceLocation end;
 };
 
 #endif
