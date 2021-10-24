@@ -15,7 +15,9 @@ struct PathTokenizer {
 
     struct Scanner scanner;
 
-    struct SpanOfPathTokens tokens;
+    struct SpanOfPathTokens span;
+
+    size_t position;
 };
 
 ///
@@ -34,16 +36,18 @@ extern struct PathTokenizer initPathTokenizerWithScanner(
 
 ///
 
-
-
-// extern bool isPathTokenizerAtEof(
-//     struct PathTokenizer * tokenizer);
-
+extern const bool pathTokenizerIsAtEof(
+    struct PathTokenizer * tokenizer);
 
 ///
 
-// extern struct SourceLocation pathTokenizerLocation(
-//     struct PathTokenizer * tokenizer);
+extern const struct SourceLocation pathTokenizerLocation(
+    struct PathTokenizer * tokenizer);
+
+///
+
+extern void pathTokenizerNext(
+    struct PathTokenizer * tokenizer);
 
 ///
 

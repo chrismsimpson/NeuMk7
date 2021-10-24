@@ -19,7 +19,7 @@ struct PathTokenizer initPathTokenizerWithScanner(
 
     ///
 
-    struct PathTokenizer tokenizer = {scanner, span};
+    struct PathTokenizer tokenizer = {scanner, span, 0};
 
     ///
 
@@ -28,21 +28,47 @@ struct PathTokenizer initPathTokenizerWithScanner(
 
 ///
 
-// bool isPathTokenizerAtEof(
-//     struct PathTokenizer * tokenizer) {
+const bool pathTokenizerIsAtEof(
+    struct PathTokenizer * tokenizer) {
 
-//     const struct SourceLocation tokenizerLocation = 
-// }
+    const struct SourceLocation t = pathTokenizerLocation(tokenizer);
+
+    const struct SourceLocation s = scannerLocation(&tokenizer->scanner);
+
+    ///
+
+    if (t.position == s.position) {
+
+        return scannerIsAtEof(&tokenizer->scanner);
+    }
+
+    ///
+
+    return false;
+}
 
 ///
 
-// struct SourceLocation pathTokenizerLocation(
-//     struct PathTokenizer * tokenizer) {
+const struct SourceLocation pathTokenizerLocation(
+    struct PathTokenizer * tokenizer) {
 
-//     if (tokenizer.pos) {
+    if (tokenizer->position + 1 <= tokenizer->span.length) {
 
-//     }
-// }
+        return tokenizer->span.tokens[tokenizer->position].start;
+    }
+
+    ///
+
+    return scannerLocation(&tokenizer->scanner);
+}
+
+///
+
+void pathTokenizerNext(
+    struct PathTokenizer * tokenizer) {
+
+    
+}
 
 ///
 

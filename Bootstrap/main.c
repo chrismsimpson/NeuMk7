@@ -24,6 +24,8 @@ void printNext(
 
 void printTokenizer();
 
+void printTokenizerNext();
+
 void printParser();
 
 ///
@@ -34,7 +36,9 @@ int main() {
 
     ///
 
-    printParser();
+    // printParser();
+
+    printTokenizerNext();
 
     // printDir();
 
@@ -74,9 +78,11 @@ void printParser() {
     ///
 
     pathParserTokens(&parser, tokens);
+}
 
+void printTokenizerNext() {
 
-
+    printf("//\n// Tokenizer stuffs\n//\n\n");
 }
 
 void printTokenizer() {
