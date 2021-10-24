@@ -12,8 +12,6 @@ struct Scanner {
 
     const struct String source;
 
-    const size_t limit;
-
     ///
 
     int position;
@@ -25,7 +23,7 @@ struct Scanner {
 
 ///
 
-extern void incrementScannerForChar(
+extern void incrementScannerWithChar(
     struct Scanner * scanner,
     const char c);
 
@@ -36,18 +34,17 @@ extern struct Scanner initScanner(
     const size_t length,
     const size_t limit);
 
-extern struct Scanner initScannerFromString(
-    const struct String source,
-    const size_t limit);
+extern struct Scanner initScannerWithString(
+    const struct String source);
 
 ///
 
-extern const bool isScannerAtEof(
+extern const bool scannerIsAtEof(
     const struct Scanner * scanner);
 
 ///
 
-extern const struct SourceLocation location(
+extern const struct SourceLocation scannerLocation(
     struct Scanner * scanner);
 
 ///

@@ -46,6 +46,8 @@ struct SpanOfPathTokens {
     const struct PathToken * tokens;
 
     const size_t length;
+
+    const size_t limit;
 };
 
 ///

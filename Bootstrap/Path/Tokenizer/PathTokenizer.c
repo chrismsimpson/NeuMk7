@@ -5,21 +5,21 @@ struct PathTokenizer initPathTokenizer(
     const size_t sourceLength,
     const size_t sourceLimit,
     struct PathToken * tokens,
-    const size_t tokensLength) {
+    const size_t tokensLimit) {
 
-    return initPathTokenizerWithScanner(initScanner(source, sourceLength, sourceLimit), tokens, tokensLength);
+    return initPathTokenizerWithScanner(initScanner(source, sourceLength, sourceLimit), tokens, tokensLimit);
 }
 
 struct PathTokenizer initPathTokenizerWithScanner(
     struct Scanner scanner,
     struct PathToken * tokens,
-    const size_t length) {
+    const size_t tokensLimit) {
 
-    struct SpanOfPathTokens span = {tokens, length};
+    struct SpanOfPathTokens span = {tokens, 0, tokensLimit};
 
     ///
 
-    struct PathTokenizer tokenizer = {scanner};
+    struct PathTokenizer tokenizer = {scanner, span};
 
     ///
 
@@ -72,13 +72,13 @@ const struct PathToken unsafeNextPathToken(
 const struct PathToken unsafeTokenizePathComponent(
     struct PathTokenizer * tokenizer) {
 
-    const struct SourceLocation start = location(&tokenizer->scanner);
+    const struct SourceLocation start = scannerLocation(&tokenizer->scanner);
 
     ///
 
     const bool (*isComponentPart) (const char) = &isPathComponentPart;
 
-    char componentBuffer[tokenizer->scanner.limit];
+    char componentBuffer[tokenizer->scanner.source.limit];
 
     const size_t read = nextWhile(&tokenizer->scanner, componentBuffer, isComponentPart);
 
@@ -88,7 +88,7 @@ const struct PathToken unsafeTokenizePathComponent(
 
     ///
 
-    const struct PathToken token = initPathTokenFromComponent(source, start, location(&tokenizer->scanner));
+    const struct PathToken token = initPathTokenFromComponent(source, start, scannerLocation(&tokenizer->scanner));
 
     return token;
 }
@@ -100,7 +100,7 @@ const struct PathToken unsafeTokenizePathPunc(
     const char c,
     const enum PathPuncType puncType) {
 
-    const struct SourceLocation start = location(&tokenizer->scanner);
+    const struct SourceLocation start = scannerLocation(&tokenizer->scanner);
 
     ///
 
@@ -126,7 +126,7 @@ const struct PathToken unsafeTokenizePathPunc(
 
     ///
 
-    const struct PathToken token = initPathTokenFromPunc(source, punc, start, location(&tokenizer->scanner));
+    const struct PathToken token = initPathTokenFromPunc(source, punc, start, scannerLocation(&tokenizer->scanner));
 
     return token;
 }
@@ -142,7 +142,7 @@ const struct PathToken unsafeTokenizePathPuncSlash(
 const struct PathToken unsafeTokenizeUnexpectedPathToken(
     struct PathTokenizer * tokenizer) {
 
-    const struct SourceLocation start = location(&tokenizer->scanner);
+    const struct SourceLocation start = scannerLocation(&tokenizer->scanner);
 
     ///
 
@@ -159,7 +159,7 @@ const struct PathToken unsafeTokenizeUnexpectedPathToken(
 
     ///
 
-    const struct PathToken token = initUnexpectedPathToken(source, start, location(&tokenizer->scanner));
+    const struct PathToken token = initUnexpectedPathToken(source, start, scannerLocation(&tokenizer->scanner));
 
     return token;
 }

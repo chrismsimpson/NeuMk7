@@ -15,17 +15,15 @@ struct PathParser {
 
 ///
 
-extern void initPathParser(
+extern struct PathParser initPathParser(
     const char * source,
     const size_t sourceLength,
     const size_t sourceLimit,
     struct PathToken * tokens,
     const size_t tokensLimit);
 
-// extern struct PathParser initPathParser(
-//     const char * source,
-//     const size_t length, 
-//     const size_t limit);
+extern struct PathParser initPathParserWithTokenizer(
+    struct PathTokenizer tokenizer);
 
 ///
 

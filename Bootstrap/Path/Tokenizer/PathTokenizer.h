@@ -15,7 +15,7 @@ struct PathTokenizer {
 
     struct Scanner scanner;
 
-    // struct SpanOfPathTokens tokens;
+    struct SpanOfPathTokens tokens;
 };
 
 ///
@@ -25,12 +25,12 @@ extern struct PathTokenizer initPathTokenizer(
     const size_t sourceLength,
     const size_t sourceLimit,
     struct PathToken * tokens,
-    const size_t tokensLength);
+    const size_t tokensLimit);
 
 extern struct PathTokenizer initPathTokenizerWithScanner(
     struct Scanner scanner,
     struct PathToken * tokens,
-    const size_t length);
+    const size_t tokensLimit);
 
 ///
 

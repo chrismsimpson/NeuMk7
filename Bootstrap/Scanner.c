@@ -5,18 +5,17 @@ struct Scanner initScanner(
     const size_t length,
     const size_t limit) {
 
-    struct String s = {source, length};
+    struct String s = {source, length, limit};
 
     ///
 
-    return initScannerFromString(s, limit);
+    return initScannerWithString(s);
 }
 
-struct Scanner initScannerFromString(
-    const struct String source,
-    const size_t limit) {
+struct Scanner initScannerWithString(
+    const struct String source) {
 
-    struct Scanner scanner = {source, limit, 0, 1, 1};
+    struct Scanner scanner = {source, 0, 1, 1};
 
     ///
 
@@ -25,7 +24,7 @@ struct Scanner initScannerFromString(
 
 ///
 
-void incrementScannerForChar(
+void scannerIncrementWithChar(
     struct Scanner * scanner,
     const char c) {
 
@@ -55,7 +54,7 @@ void incrementScannerForChar(
 
 ///
 
-const bool isScannerAtEof(
+const bool scannerIsAtEof(
     const struct Scanner * scanner) {
 
     return scanner->position >= scanner->source.length;
@@ -64,7 +63,7 @@ const bool isScannerAtEof(
 ///
 
 
-const struct SourceLocation location(
+const struct SourceLocation scannerLocation(
     struct Scanner * scanner) {
 
     const struct SourceLocation l = {scanner->position, scanner->lineNumber, scanner->column};
@@ -85,7 +84,7 @@ const struct OptionalChar next(
 
     if (c.option == some) {
 
-        incrementScannerForChar(scanner, c.value);
+        scannerIncrementWithChar(scanner, c.value);
     }
 
     ///
@@ -100,7 +99,7 @@ const size_t nextWhile(
 
     size_t i = 0;
 
-    while (!isScannerAtEof(scanner) && test(unsafePeek(scanner))) {
+    while (!scannerIsAtEof(scanner) && test(unsafePeek(scanner))) {
 
         const struct OptionalChar c = next(scanner);
 
@@ -121,7 +120,7 @@ const size_t nextWhile(
 
         ///
 
-        if (i >= scanner->limit) {
+        if (i >= scanner->source.limit) {
 
             printf("warn: reached scanner buffer size");
 
@@ -143,7 +142,7 @@ const size_t nextWhile(
 const struct OptionalChar peek(
     struct Scanner * scanner) {
 
-    if (isScannerAtEof(scanner)) {
+    if (scannerIsAtEof(scanner)) {
 
         return initNilChar();
     }

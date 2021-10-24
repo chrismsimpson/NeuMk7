@@ -69,7 +69,9 @@ void printParser() {
 
     ///
 
-    initPathParser(pathBuffer, pathLength, PATH_MAX, tokens, PATH_MAX);
+    struct PathParser parser = initPathParser(pathBuffer, pathLength, PATH_MAX, tokens, PATH_MAX);
+
+
     
 
     // struct PathParser parser = initPathParser(pathBuffer, length, PATH_MAX, tokens, PATH_MAX);
@@ -166,7 +168,7 @@ void printDir() {
 
     const bool (*isComponentPart) (const char) = &isPathComponentPart;
 
-    char componentBuffer[scanner.limit];
+    char componentBuffer[scanner.source.limit];
 
     const size_t read = nextWhile(&scanner, componentBuffer, isComponentPart);
 

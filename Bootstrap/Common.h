@@ -37,6 +37,7 @@ struct String {
 
     const size_t length;
 
+    const size_t limit;
 };
 
 struct OptionalString {
