@@ -108,7 +108,7 @@ void printTokenizer() {
 
     ///
 
-    const struct PathToken slash = unsafeNextPathToken(&tokenizer);
+    const struct PathToken slash = unsafePathTokenizerNext(&tokenizer);
 
         ///
 
@@ -122,7 +122,7 @@ void printTokenizer() {
 
     ///
 
-    const struct PathToken users = unsafeTokenizePathComponent(&tokenizer);
+    const struct PathToken users = unsafePathTokenizerComponent(&tokenizer);
 
         ///
 

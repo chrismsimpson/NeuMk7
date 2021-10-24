@@ -46,7 +46,7 @@ struct PathTokenizer initPathTokenizerWithScanner(
 
 ///
 
-const struct PathToken unsafeNextPathToken(
+const struct PathToken unsafePathTokenizerNext(
     struct PathTokenizer * tokenizer) {
 
     const char nextChar = unsafeScannerPeek(&tokenizer->scanner);
@@ -55,21 +55,21 @@ const struct PathToken unsafeNextPathToken(
 
     if (nextChar == '/') {
 
-        return unsafeTokenizePathPuncSlash(tokenizer);
+        return unsafePathTokenizerSlash(tokenizer);
     }
     else if (isPathComponentPart(nextChar)) {
 
-        return unsafeTokenizePathComponent(tokenizer);
+        return unsafePathTokenizerComponent(tokenizer);
     }
     else {
 
-        return unsafeTokenizeUnexpectedPathToken(tokenizer);
+        return unsafePathTokenizerUnexpected(tokenizer);
     }
 }
 
 ///
 
-const struct PathToken unsafeTokenizePathComponent(
+const struct PathToken unsafePathTokenizerComponent(
     struct PathTokenizer * tokenizer) {
 
     const struct SourceLocation start = scannerLocation(&tokenizer->scanner);
@@ -95,7 +95,7 @@ const struct PathToken unsafeTokenizePathComponent(
 
 ///
 
-const struct PathToken unsafeTokenizePathPunc(
+const struct PathToken unsafePathTokenizerPunc(
     struct PathTokenizer * tokenizer,
     const char c,
     const enum PathPuncType puncType) {
@@ -131,15 +131,15 @@ const struct PathToken unsafeTokenizePathPunc(
     return token;
 }
 
-const struct PathToken unsafeTokenizePathPuncSlash(
+const struct PathToken unsafePathTokenizerSlash(
     struct PathTokenizer * tokenizer) {
 
-    return unsafeTokenizePathPunc(tokenizer, '/', pathPuncTypeSlash);
+    return unsafePathTokenizerPunc(tokenizer, '/', pathPuncTypeSlash);
 }
 
 ///
 
-const struct PathToken unsafeTokenizeUnexpectedPathToken(
+const struct PathToken unsafePathTokenizerUnexpected(
     struct PathTokenizer * tokenizer) {
 
     const struct SourceLocation start = scannerLocation(&tokenizer->scanner);

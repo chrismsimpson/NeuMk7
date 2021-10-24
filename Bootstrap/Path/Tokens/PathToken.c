@@ -1,6 +1,6 @@
 #include "PathToken.h"
 
-extern struct PathToken initPathTokenFromComponent(
+struct PathToken initPathTokenFromComponent(
     const struct String source,
     const struct SourceLocation start,
     const struct SourceLocation end) {

@@ -48,27 +48,27 @@ extern struct PathTokenizer initPathTokenizerWithScanner(
 
 ///
 
-extern const struct PathToken unsafeNextPathToken(
+extern const struct PathToken unsafePathTokenizerNext(
     struct PathTokenizer * tokenizer);
 
 ///
 
-extern const struct PathToken unsafeTokenizePathComponent(
+extern const struct PathToken unsafePathTokenizerComponent(
     struct PathTokenizer * tokenizer);
 
 ///
 
-extern const struct PathToken unsafeTokenizePathPunc(
+extern const struct PathToken unsafePathTokenizerPunc(
     struct PathTokenizer * tokenizer,
     const char c,
     const enum PathPuncType puncType);
 
-extern const struct PathToken unsafeTokenizePathPuncSlash(
+extern const struct PathToken unsafePathTokenizerSlash(
     struct PathTokenizer * tokenizer);
 
 ///
 
-extern const struct PathToken unsafeTokenizeUnexpectedPathToken(
+extern const struct PathToken unsafePathTokenizerUnexpected(
     struct PathTokenizer * tokenizer);
 
 #endif
