@@ -1,7 +1,7 @@
 project (main)
 
 add_executable(main
-    Path/Parser/PathParser.h
+    Path/Parser/PathParser.c
     Path/Tokenizer/PathTokenizer.c
     Path/Tokens/PathComponent.c
     Path/Tokens/PathPunc.c

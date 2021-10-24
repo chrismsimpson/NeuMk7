@@ -54,6 +54,27 @@ int main() {
 void printParser() {
 
     printf("//\n// Parser stuffs\n//\n\n");
+
+    ///
+
+    char pathBuffer[PATH_MAX];
+
+    getcwd(pathBuffer, sizeof(pathBuffer));
+
+    const size_t length = strlen(pathBuffer);
+
+    ///
+
+    struct PathParser parser = initPathParser(pathBuffer, length, PATH_MAX);
+
+    ///
+
+    struct PathToken tokens[PATH_MAX];
+
+    parsePathTokens(&parser, tokens);
+
+
+
 }
 
 void printTokenizer() {
