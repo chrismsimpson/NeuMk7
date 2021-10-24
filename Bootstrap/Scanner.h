@@ -23,12 +23,6 @@ struct Scanner {
 
 ///
 
-extern void incrementScannerWithChar(
-    struct Scanner * scanner,
-    const char c);
-
-///
-
 extern struct Scanner initScanner(
     const char * source, 
     const size_t length,
@@ -36,6 +30,12 @@ extern struct Scanner initScanner(
 
 extern struct Scanner initScannerWithString(
     const struct String source);
+
+///
+
+extern void scannerIncrementWithChar(
+    struct Scanner * scanner,
+    const char c);
 
 ///
 
@@ -49,7 +49,7 @@ extern const struct SourceLocation scannerLocation(
 
 ///
 
-extern const struct OptionalChar next(
+extern const struct OptionalChar scannerNext(
     struct Scanner * scanner);
 
 extern const size_t nextWhile(

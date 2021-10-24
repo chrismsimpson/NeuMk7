@@ -75,7 +75,7 @@ const struct SourceLocation scannerLocation(
 
 ///
 
-const struct OptionalChar next(
+const struct OptionalChar scannerNext(
     struct Scanner * scanner) {
 
     const struct OptionalChar c = peek(scanner);
@@ -101,7 +101,7 @@ const size_t nextWhile(
 
     while (!scannerIsAtEof(scanner) && test(unsafePeek(scanner))) {
 
-        const struct OptionalChar c = next(scanner);
+        const struct OptionalChar c = scannerNext(scanner);
 
         if (c.option == none) {
 

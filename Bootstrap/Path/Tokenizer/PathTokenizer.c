@@ -104,7 +104,7 @@ const struct PathToken unsafeTokenizePathPunc(
 
     ///
 
-    const struct OptionalChar n = next(&tokenizer->scanner);
+    const struct OptionalChar n = scannerNext(&tokenizer->scanner);
 
     if (n.option == none) {
 
@@ -146,7 +146,7 @@ const struct PathToken unsafeTokenizeUnexpectedPathToken(
 
     ///
 
-    const struct OptionalChar n = next(&tokenizer->scanner);
+    const struct OptionalChar n = scannerNext(&tokenizer->scanner);
 
     if (n.option == none) {
 

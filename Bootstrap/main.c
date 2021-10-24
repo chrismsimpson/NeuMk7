@@ -178,7 +178,7 @@ void printDir() {
 void printNext(
     struct Scanner * scanner) {
 
-    const struct OptionalChar n = next(scanner);
+    const struct OptionalChar n = scannerNext(scanner);
 
     if (n.option == none) {
 
