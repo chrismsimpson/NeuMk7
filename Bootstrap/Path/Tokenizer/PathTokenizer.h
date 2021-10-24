@@ -1,6 +1,8 @@
 #ifndef PATH_TOKENIZER_H
 #define PATH_TOKENIZER_H
 
+#include <limits.h>
+
 #include "../../Scanner.h"
 
 #include "../Tokens/PathComponent.h"
@@ -27,6 +29,13 @@ extern struct PathTokenizer initPathTokenizerWithScanner(
 extern const struct PathToken unsafeNextPathToken(
     struct PathTokenizer * tokenizer);
 
+///
+
+extern const struct PathToken unsafeTokenizePathComponent(
+    struct PathTokenizer * tokenizer);
+
+///
+
 extern const struct PathToken unsafeTokenizePathPunc(
     struct PathTokenizer * tokenizer,
     const char c,
@@ -35,8 +44,7 @@ extern const struct PathToken unsafeTokenizePathPunc(
 extern const struct PathToken unsafeTokenizePathPuncSlash(
     struct PathTokenizer * tokenizer);
 
-// extern void unsafeTokenizePathComponent(
-//     struct PathTokenizer * tokenizer);
+///
 
 extern const struct PathToken unsafeTokenizeUnexpectedPathToken(
     struct PathTokenizer * tokenizer);

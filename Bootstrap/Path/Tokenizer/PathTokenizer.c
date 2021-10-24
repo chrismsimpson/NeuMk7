@@ -31,15 +31,43 @@ const struct PathToken unsafeNextPathToken(
 
         return unsafeTokenizePathPuncSlash(tokenizer);
     }
-    // else if (isPathComponentPart(nextChar)) {
+    else if (isPathComponentPart(nextChar)) {
 
-    //     return unsafeTokenizePathComponent(tokenizer);
-    // }
+        return unsafeTokenizePathComponent(tokenizer);
+    }
     else {
 
         return unsafeTokenizeUnexpectedPathToken(tokenizer);
     }
 }
+
+///
+
+const struct PathToken unsafeTokenizePathComponent(
+    struct PathTokenizer * tokenizer) {
+
+    const struct SourceLocation start = location(&tokenizer->scanner);
+
+    ///
+
+    const bool (*isComponentPart) (const char) = &isPathComponentPart;
+
+    char componentBuffer[tokenizer->scanner.bufferSize];
+
+    const size_t read = nextWhile(&tokenizer->scanner, componentBuffer, isComponentPart);
+
+    ///
+
+    const struct String source = {&tokenizer->scanner.source.source[start.position], read};
+
+    ///
+
+    const struct PathToken token = initPathTokenFromComponent(source, start, location(&tokenizer->scanner));
+
+    return token;
+}
+
+///
 
 const struct PathToken unsafeTokenizePathPunc(
     struct PathTokenizer * tokenizer,
@@ -64,11 +92,15 @@ const struct PathToken unsafeTokenizePathPunc(
 
     ///
 
+    const struct String source = {&tokenizer->scanner.source.source[start.position], 1};
+
+    ///
+
     const struct PathPunc punc = {puncType};
 
     ///
 
-    const struct PathToken token = initPathTokenFromPunc(&n.value, punc, start, location(&tokenizer->scanner));
+    const struct PathToken token = initPathTokenFromPunc(source, punc, start, location(&tokenizer->scanner));
 
     return token;
 }
@@ -79,11 +111,7 @@ const struct PathToken unsafeTokenizePathPuncSlash(
     return unsafeTokenizePathPunc(tokenizer, '/', pathPuncTypeSlash);
 }
 
-// void unsafeTokenizePathComponent(
-//     struct PathTokenizer * tokenizer) {
-
-    
-// }
+///
 
 const struct PathToken unsafeTokenizeUnexpectedPathToken(
     struct PathTokenizer * tokenizer) {
@@ -101,8 +129,11 @@ const struct PathToken unsafeTokenizeUnexpectedPathToken(
 
     ///
 
-    const struct PathToken token = initUnexpectedPathToken(&n.value, start, location(&tokenizer->scanner));
+    const struct String source = {&tokenizer->scanner.source.source[start.position], 1};
+
+    ///
+
+    const struct PathToken token = initUnexpectedPathToken(source, start, location(&tokenizer->scanner));
 
     return token;
-
 }

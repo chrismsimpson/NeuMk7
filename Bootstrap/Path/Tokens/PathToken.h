@@ -43,14 +43,19 @@ struct OptionalPathToken {
 
 ///
 
+extern struct PathToken initPathTokenFromComponent(
+    const struct String source,
+    const struct SourceLocation start,
+    const struct SourceLocation end);
+
 extern struct PathToken initPathTokenFromPunc(
-    const char * source,
+    const struct String source,
     const struct PathPunc punc,
     const struct SourceLocation start,
     const struct SourceLocation end);
 
 extern struct PathToken initUnexpectedPathToken(
-    const char * source,
+    const struct String source,
     const struct SourceLocation start,
     const struct SourceLocation end);
 

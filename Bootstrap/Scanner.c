@@ -93,12 +93,12 @@ const struct OptionalChar next(
     return c;
 }
 
-void nextWhile(
+const size_t nextWhile(
     struct Scanner * scanner,
     char * buffer,
     const bool (*test) (const char)) {
 
-    int i = 0;
+    size_t i = 0;
 
     while (!isScannerAtEof(scanner) && test(unsafePeek(scanner))) {
 
@@ -108,7 +108,7 @@ void nextWhile(
 
             printf("warn: unexpected nil char");
 
-            return;
+            return i;
         }
 
         ///
@@ -125,13 +125,17 @@ void nextWhile(
 
             printf("warn: reached scanner buffer size");
 
-            return;
+            return i;
         }
     }
 
     ///
 
     buffer[i] = '\0';
+
+    ///
+
+    return i;
 }
 
 ///

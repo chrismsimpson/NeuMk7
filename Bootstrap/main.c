@@ -31,7 +31,7 @@ int main() {
 
     ///
 
-    printDir();
+    // printDir();
 
     ///
 
@@ -39,7 +39,7 @@ int main() {
 
     ///
 
-    printFile("Tests/test01.neu");
+    // printFile("Tests/test01.neu");
 
     ///
 
@@ -64,21 +64,32 @@ void printTokenizer() {
 
     ///
 
-    printf("%s\n", tokenizer.scanner.source.source);
+    const struct PathToken slash = unsafeNextPathToken(&tokenizer);
 
-    // next(&tokenizer.scanner);
+        ///
 
-    
-    const struct PathToken t = unsafeNextPathToken(&tokenizer);
+        char slashBuffer[slash.source.length + 1];
 
-    printf("%s\n", t.source);
+        strncpy(slashBuffer, (const char *) slash.source.source, slash.source.length);
+
+        slashBuffer[slash.source.length] = '\0';
+
+        printf("slash: %s\n", slashBuffer);
 
     ///
 
-    const struct PathToken t2 = unsafeNextPathToken(&tokenizer);
+    const struct PathToken users = unsafeTokenizePathComponent(&tokenizer);
 
-    printf("%s\n", t2.source);
-    
+        ///
+
+        char usersBuffer[users.source.length + 1];
+
+        strncpy(usersBuffer, (const char *) users.source.source, users.source.length);
+
+        usersBuffer[users.source.length] = '\0';
+
+        printf("users: %s\n", usersBuffer);
+
 
     ///
 
@@ -115,7 +126,7 @@ void printDir() {
 
     char componentBuffer[scanner.bufferSize];
 
-    nextWhile(&scanner, componentBuffer, isComponentPart);
+    const size_t read = nextWhile(&scanner, componentBuffer, isComponentPart);
 
     printf("componentBuffer: %s\n\n", componentBuffer);
 }

@@ -55,7 +55,7 @@ extern const struct SourceLocation location(
 extern const struct OptionalChar next(
     struct Scanner * scanner);
 
-extern void nextWhile(
+extern const size_t nextWhile(
     struct Scanner * scanner,
     char * buffer,
     const bool (*test) (const char));
