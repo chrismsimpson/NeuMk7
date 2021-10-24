@@ -32,9 +32,11 @@ struct String {
     const size_t length;
 };
 
-struct Optional {
+struct OptionalString {
 
     const enum Option option;
+
+    const struct String value;
 };
 
 #endif

@@ -1,6 +1,7 @@
 #ifndef PATH_TOKEN_H
 #define PATH_TOKEN_H
 
+#include "../../Common.h"
 #include "../../SourceLocation.h"
 
 #include "PathComponent.h"
@@ -28,6 +29,13 @@ struct PathToken {
     const struct SourceLocation start;
 
     const struct SourceLocation end;
+};
+
+struct OptionalPathToken {
+
+    const enum Option option;
+
+    const struct PathToken value;
 };
 
 #endif
