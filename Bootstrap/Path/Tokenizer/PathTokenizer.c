@@ -49,7 +49,7 @@ struct PathTokenizer initPathTokenizerWithScanner(
 const struct PathToken unsafeNextPathToken(
     struct PathTokenizer * tokenizer) {
 
-    const char nextChar = unsafePeek(&tokenizer->scanner);
+    const char nextChar = unsafeScannerPeek(&tokenizer->scanner);
 
     ///
 
@@ -80,7 +80,7 @@ const struct PathToken unsafeTokenizePathComponent(
 
     char componentBuffer[tokenizer->scanner.source.limit];
 
-    const size_t read = nextWhile(&tokenizer->scanner, componentBuffer, isComponentPart);
+    const size_t read = scannerNextWhile(&tokenizer->scanner, componentBuffer, isComponentPart);
 
     ///
 

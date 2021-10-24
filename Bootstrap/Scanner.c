@@ -78,7 +78,7 @@ const struct SourceLocation scannerLocation(
 const struct OptionalChar scannerNext(
     struct Scanner * scanner) {
 
-    const struct OptionalChar c = peek(scanner);
+    const struct OptionalChar c = scannerPeek(scanner);
 
     ///
 
@@ -92,14 +92,14 @@ const struct OptionalChar scannerNext(
     return c;
 }
 
-const size_t nextWhile(
+const size_t scannerNextWhile(
     struct Scanner * scanner,
     char * buffer,
     const bool (*test) (const char)) {
 
     size_t i = 0;
 
-    while (!scannerIsAtEof(scanner) && test(unsafePeek(scanner))) {
+    while (!scannerIsAtEof(scanner) && test(unsafeScannerPeek(scanner))) {
 
         const struct OptionalChar c = scannerNext(scanner);
 
@@ -139,7 +139,7 @@ const size_t nextWhile(
 
 ///
 
-const struct OptionalChar peek(
+const struct OptionalChar scannerPeek(
     struct Scanner * scanner) {
 
     if (scannerIsAtEof(scanner)) {
@@ -149,22 +149,22 @@ const struct OptionalChar peek(
 
     ///
 
-    return initOptionalChar(unsafePeek(scanner));
+    return initOptionalChar(unsafeScannerPeek(scanner));
 }
 
 ///
 
-const char unsafePeek(
+const char unsafeScannerPeek(
     struct Scanner * scanner) {
 
     char buffer;
 
-    unsafePeekLength(scanner, &buffer, 1);
+    unsafeScannerPeekLength(scanner, &buffer, 1);
 
     return buffer;
 }
 
-void unsafePeekLength(
+void unsafeScannerPeekLength(
     struct Scanner * scanner,
     char * buffer,
     const size_t length) {

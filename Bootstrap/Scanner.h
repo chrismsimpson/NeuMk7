@@ -52,22 +52,22 @@ extern const struct SourceLocation scannerLocation(
 extern const struct OptionalChar scannerNext(
     struct Scanner * scanner);
 
-extern const size_t nextWhile(
+extern const size_t scannerNextWhile(
     struct Scanner * scanner,
     char * buffer,
     const bool (*test) (const char));
 
 ///
 
-extern const struct OptionalChar peek(
+extern const struct OptionalChar scannerPeek(
     struct Scanner * scanner);
 
 ///
 
-extern const char unsafePeek(
+extern const char unsafeScannerPeek(
     struct Scanner * scanner);
 
-extern void unsafePeekLength(
+extern void unsafeScannerPeekLength(
     struct Scanner * scanner,
     char * buffer,
     const size_t length);

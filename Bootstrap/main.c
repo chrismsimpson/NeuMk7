@@ -170,7 +170,7 @@ void printDir() {
 
     char componentBuffer[scanner.source.limit];
 
-    const size_t read = nextWhile(&scanner, componentBuffer, isComponentPart);
+    const size_t read = scannerNextWhile(&scanner, componentBuffer, isComponentPart);
 
     printf("componentBuffer: %s\n\n", componentBuffer);
 }
