@@ -27,7 +27,7 @@ extern struct PathParser initPathParserWithTokenizer(
 
 ///
 
-extern void parsePathTokens(
+extern void pathParserTokens(
     struct PathParser * parser,
     struct PathToken * tokens);
 

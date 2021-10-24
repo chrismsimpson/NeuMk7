@@ -71,16 +71,9 @@ void printParser() {
 
     struct PathParser parser = initPathParser(pathBuffer, pathLength, PATH_MAX, tokens, PATH_MAX);
 
-
-    
-
-    // struct PathParser parser = initPathParser(pathBuffer, length, PATH_MAX, tokens, PATH_MAX);
-
     ///
 
-    // struct PathToken tokens[PATH_MAX];
-
-    // parsePathTokens(&parser, tokens);
+    pathParserTokens(&parser, tokens);
 
 
 

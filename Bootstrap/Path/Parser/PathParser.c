@@ -20,7 +20,7 @@ struct PathParser initPathParserWithTokenizer(
 
 ///
 
-void parsePathTokens(
+void pathParserTokens(
     struct PathParser * parser,
     struct PathToken * tokens) {
 

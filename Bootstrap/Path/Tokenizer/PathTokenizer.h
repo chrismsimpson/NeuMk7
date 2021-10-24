@@ -45,7 +45,6 @@ extern struct PathTokenizer initPathTokenizerWithScanner(
 // extern struct SourceLocation pathTokenizerLocation(
 //     struct PathTokenizer * tokenizer);
 
-
 ///
 
 extern const struct PathToken unsafePathTokenizerNext(
