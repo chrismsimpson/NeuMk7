@@ -3,6 +3,12 @@
 
 #include <stdio.h>
 
+enum Result {
+
+    success,
+    failure
+};
+
 enum Option {
 
     none,

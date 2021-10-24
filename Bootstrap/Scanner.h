@@ -6,6 +6,8 @@
 
 #include "Common.h"
 
+#include "SourceLocation.h"
+
 struct Scanner {
 
     const struct String source;
@@ -42,6 +44,11 @@ extern struct Scanner initScannerFromString(
 
 extern const bool isScannerAtEof(
     const struct Scanner * scanner);
+
+///
+
+extern const struct SourceLocation location(
+    struct Scanner * scanner);
 
 ///
 

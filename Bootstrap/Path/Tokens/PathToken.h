@@ -10,7 +10,8 @@
 enum PathTokenType {
 
     pathTokenTypeComponent,
-    pathTokenTypePunc
+    pathTokenTypePunc,
+    pathTokenTypeUnexpected
 };
 
 union PathTokenValue {
@@ -21,6 +22,8 @@ union PathTokenValue {
 };
 
 struct PathToken {
+
+    const struct String source;
 
     const enum PathTokenType tokenType;
 
@@ -37,5 +40,18 @@ struct OptionalPathToken {
 
     const struct PathToken value;
 };
+
+///
+
+extern struct PathToken initPathTokenFromPunc(
+    const char * source,
+    const struct PathPunc punc,
+    const struct SourceLocation start,
+    const struct SourceLocation end);
+
+extern struct PathToken initUnexpectedPathToken(
+    const char * source,
+    const struct SourceLocation start,
+    const struct SourceLocation end);
 
 #endif

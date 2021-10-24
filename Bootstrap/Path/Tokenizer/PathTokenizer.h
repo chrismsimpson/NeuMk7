@@ -3,6 +3,10 @@
 
 #include "../../Scanner.h"
 
+#include "../Tokens/PathComponent.h"
+#include "../Tokens/PathPunc.h"
+#include "../Tokens/PathToken.h"
+
 struct PathTokenizer {
 
     struct Scanner scanner;
@@ -20,7 +24,21 @@ extern struct PathTokenizer initPathTokenizerWithScanner(
 
 ///
 
-extern void unsafeNext(
+extern const struct PathToken unsafeNextPathToken(
+    struct PathTokenizer * tokenizer);
+
+extern const struct PathToken unsafeTokenizePathPunc(
+    struct PathTokenizer * tokenizer,
+    const char c,
+    const enum PathPuncType puncType);
+
+extern const struct PathToken unsafeTokenizePathPuncSlash(
+    struct PathTokenizer * tokenizer);
+
+// extern void unsafeTokenizePathComponent(
+//     struct PathTokenizer * tokenizer);
+
+extern const struct PathToken unsafeTokenizeUnexpectedPathToken(
     struct PathTokenizer * tokenizer);
 
 #endif

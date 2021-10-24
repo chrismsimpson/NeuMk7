@@ -63,6 +63,19 @@ const bool isScannerAtEof(
 
 ///
 
+
+const struct SourceLocation location(
+    struct Scanner * scanner) {
+
+    const struct SourceLocation l = {scanner->position, scanner->lineNumber, scanner->column};
+
+    ///
+
+    return l;
+}
+
+///
+
 const struct OptionalChar next(
     struct Scanner * scanner) {
 

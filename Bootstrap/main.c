@@ -9,8 +9,9 @@
 #include "Scanner.h"
 #include "Common.h"
 
-#include "Path/Tokens/PathComponent.h"
 #include "Path/Tokenizer/PathTokenizer.h"
+#include "Path/Tokens/PathComponent.h"
+#include "Path/Tokens/PathToken.h"
 
 void printDir();
 
@@ -65,6 +66,18 @@ void printTokenizer() {
 
     printf("%s\n", tokenizer.scanner.source.source);
 
+    // next(&tokenizer.scanner);
+
+    
+    const struct PathToken t = unsafeNextPathToken(&tokenizer);
+
+    printf("%s\n", t.source);
+
+    ///
+
+    const struct PathToken t2 = unsafeNextPathToken(&tokenizer);
+
+    printf("%s\n", t2.source);
     
 
     ///
