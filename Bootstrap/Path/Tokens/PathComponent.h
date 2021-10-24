@@ -3,6 +3,12 @@
 
 #include <stdbool.h>
 
+struct PathComponent {
+
+};
+
+///
+
 extern const bool isPathComponentPart(
     const char c);
 
