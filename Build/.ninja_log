@@ -1,7 +1,0 @@
-# ninja log v5
-1	45	1635036186887351117	CMakeFiles/main.dir/Path/Tokens/PathComponent.c.o	6b85e5447afa9719
-1	52	1635036186893838998	CMakeFiles/main.dir/Common.c.o	59abc0cc414be0a5
-0	54	1635036186896192424	CMakeFiles/main.dir/Path/Tokenizer/PathTokenizer.c.o	3528ddf772b2088b
-2	58	1635036186899987335	CMakeFiles/main.dir/Scanner.c.o	4b43b4299e6c7da6
-1	69	1635036186911268469	CMakeFiles/main.dir/main.c.o	7765ab7864faeebd
-69	125	1635036186968082201	main	526f0b39194d2b14
