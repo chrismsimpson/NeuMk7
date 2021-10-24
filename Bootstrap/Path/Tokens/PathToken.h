@@ -52,18 +52,23 @@ struct SpanOfPathTokens {
 
 ///
 
-extern struct PathToken initPathTokenFromComponent(
+extern const struct PathToken initPathTokenFromComponent(
     const struct String source,
     const struct SourceLocation start,
     const struct SourceLocation end);
 
-extern struct PathToken initPathTokenFromPunc(
+extern const struct PathToken initPathTokenFromPunc(
     const struct String source,
     const struct PathPunc punc,
     const struct SourceLocation start,
     const struct SourceLocation end);
 
-extern struct PathToken initUnexpectedPathToken(
+extern const struct OptionalPathToken initNilPathToken();
+
+extern const struct OptionalPathToken initOptionalPathToken(
+    const struct PathToken token);
+
+extern const struct PathToken initUnexpectedPathToken(
     const struct String source,
     const struct SourceLocation start,
     const struct SourceLocation end);

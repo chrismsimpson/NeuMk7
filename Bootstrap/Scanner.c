@@ -99,6 +99,8 @@ const size_t scannerNextWhile(
 
     size_t i = 0;
 
+    ///
+
     while (!scannerIsAtEof(scanner) && test(unsafeScannerPeek(scanner))) {
 
         const struct OptionalChar c = scannerNext(scanner);

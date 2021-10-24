@@ -1,6 +1,6 @@
 #include "PathToken.h"
 
-struct PathToken initPathTokenFromComponent(
+const struct PathToken initPathTokenFromComponent(
     const struct String source,
     const struct SourceLocation start,
     const struct SourceLocation end) {
@@ -10,7 +10,7 @@ struct PathToken initPathTokenFromComponent(
     return token;
 }
 
-struct PathToken initPathTokenFromPunc(
+const struct PathToken initPathTokenFromPunc(
     const struct String source,
     const struct PathPunc punc,
     const struct SourceLocation start,
@@ -25,7 +25,27 @@ struct PathToken initPathTokenFromPunc(
     return token;
 }
 
-extern struct PathToken initUnexpectedPathToken(
+
+const struct OptionalPathToken initNilPathToken() {
+
+    struct OptionalPathToken t = {none, {}};
+
+    ///
+
+    return t;
+}
+
+const struct OptionalPathToken initOptionalPathToken(
+    const struct PathToken token) {
+
+    struct OptionalPathToken t = {some, token};
+
+    ///
+
+    return t;
+}
+
+const struct PathToken initUnexpectedPathToken(
     const struct String source,
     const struct SourceLocation start,
     const struct SourceLocation end) {

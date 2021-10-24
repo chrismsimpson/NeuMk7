@@ -8,6 +8,8 @@
 #include "../Tokenizer/PathTokenizer.h"
 #include "../Tokens/PathToken.h"
 
+#include "../Path.h"
+
 struct PathParser {
 
     struct PathTokenizer tokenizer;
@@ -27,8 +29,16 @@ extern struct PathParser initPathParserWithTokenizer(
 
 ///
 
-extern void pathParserTokens(
+extern const struct Path pathParserPath(
     struct PathParser * parser,
-    struct PathToken * tokens);
+    struct PathToken * tokens,
+    const size_t tokensLimit);
+
+///
+
+extern const struct SpanOfPathTokens pathParserTokens(
+    struct PathParser * parser,
+    struct PathToken * tokens,
+    const size_t tokensLimit);
 
 #endif

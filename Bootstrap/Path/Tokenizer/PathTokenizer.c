@@ -64,10 +64,34 @@ const struct SourceLocation pathTokenizerLocation(
 
 ///
 
-void pathTokenizerNext(
+const struct OptionalPathToken pathTokenizerNext(
     struct PathTokenizer * tokenizer) {
 
-    
+    if (tokenizer->position + 1 <= tokenizer->span.length) {
+
+        struct PathToken token = tokenizer->span.tokens[tokenizer->position];
+
+        tokenizer->position++;
+
+        return initOptionalPathToken(token);
+    }
+
+    ///
+
+    if (scannerIsAtEof(&tokenizer->scanner)) {
+
+        return initNilPathToken();
+    }
+
+    ///
+
+    const struct PathToken token = unsafePathTokenizerNext(tokenizer);
+
+    memcpy((void *) &tokenizer->span.tokens[tokenizer->position], &token, sizeof(token));
+
+    tokenizer->position++;
+
+    return initOptionalPathToken(token);
 }
 
 ///

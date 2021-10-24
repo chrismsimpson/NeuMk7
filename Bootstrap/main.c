@@ -36,9 +36,9 @@ int main() {
 
     ///
 
-    // printParser();
+    printParser();
 
-    printTokenizerNext();
+    // printTokenizerNext();
 
     // printDir();
 
@@ -75,14 +75,89 @@ void printParser() {
 
     struct PathParser parser = initPathParser(pathBuffer, pathLength, PATH_MAX, tokens, PATH_MAX);
 
+    printf("source: %s\n", parser.tokenizer.scanner.source.source);
+
     ///
 
-    pathParserTokens(&parser, tokens);
+    struct PathToken parsedTokens[PATH_MAX];
+
+    const struct Path path = pathParserPath(&parser, parsedTokens, PATH_MAX);
+    
+    printf("# of tokens: %ld\n", path.span.length);
+
+    ///
+
+    for (size_t i = 0; i < path.span.length; i++) {
+
+        const struct PathToken t = path.span.tokens[i];
+
+        char tBuffer[t.source.length + 1];
+
+        strncpy(tBuffer, (const char *) t.source.source, t.source.length);
+
+        tBuffer[t.source.length] = '\0';
+
+        printf("token: %s\n", tBuffer);
+    }
 }
 
 void printTokenizerNext() {
 
     printf("//\n// Tokenizer stuffs\n//\n\n");
+
+    ///
+
+    char pathBuffer[PATH_MAX];
+
+    getcwd(pathBuffer, sizeof(pathBuffer));
+
+    const size_t length = strlen(pathBuffer);
+
+    ///
+
+    struct PathToken tokens[PATH_MAX];
+
+    ///
+
+    struct PathTokenizer tokenizer = initPathTokenizer(pathBuffer, length, PATH_MAX, tokens, PATH_MAX);
+
+    ///
+
+    struct OptionalPathToken t1 = pathTokenizerNext(&tokenizer);
+
+    if (t1.option == none) {
+
+        printf("token is nil\n");
+    }
+    else {
+
+        char t1Buffer[t1.value.source.length + 1];
+
+        strncpy(t1Buffer, (const char *) t1.value.source.source, t1.value.source.length);
+
+        t1Buffer[t1.value.source.length] = '\0';
+
+        printf("token: %s\n", t1Buffer);
+    }
+
+    ///
+
+    struct OptionalPathToken t2 = pathTokenizerNext(&tokenizer);
+
+    if (t2.option == none) {
+
+        printf("token is nil\n");
+    }
+    else {
+
+        char t2Buffer[t2.value.source.length + 1];
+
+        strncpy(t2Buffer, (const char *) t2.value.source.source, t2.value.source.length);
+
+        t2Buffer[t2.value.source.length] = '\0';
+
+        printf("token: %s\n", t2Buffer);
+    }
 }
 
 void printTokenizer() {

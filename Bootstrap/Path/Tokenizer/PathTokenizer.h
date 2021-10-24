@@ -46,7 +46,7 @@ extern const struct SourceLocation pathTokenizerLocation(
 
 ///
 
-extern void pathTokenizerNext(
+extern const struct OptionalPathToken pathTokenizerNext(
     struct PathTokenizer * tokenizer);
 
 ///

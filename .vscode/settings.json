@@ -15,6 +15,18 @@
         "string_view": "c",
         "unordered_map": "c",
         "vector": "c",
-        "pathtokenizer.h": "c"
+        "pathtokenizer.h": "c",
+        "__node_handle": "c",
+        "__functional_base": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "__memory": "c",
+        "functional": "c",
+        "limits": "c",
+        "memory": "c",
+        "ratio": "c",
+        "tuple": "c",
+        "type_traits": "c"
     }
 }
