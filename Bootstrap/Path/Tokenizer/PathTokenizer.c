@@ -17,3 +17,11 @@ struct PathTokenizer initPathTokenizerWithScanner(
 
     return tokenizer;
 }
+
+///
+
+void unsafeNext(
+    struct PathTokenizer * tokenize) {
+
+    
+}

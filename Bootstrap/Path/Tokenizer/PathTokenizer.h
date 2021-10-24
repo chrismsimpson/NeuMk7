@@ -18,4 +18,9 @@ extern struct PathTokenizer initPathTokenizer(
 extern struct PathTokenizer initPathTokenizerWithScanner(
     struct Scanner scanner);
 
+///
+
+extern void unsafeNext(
+    struct PathTokenizer * tokenizer);
+
 #endif

@@ -82,8 +82,8 @@ const struct OptionalChar next(
 
 void nextWhile(
     struct Scanner * scanner,
-    const bool (*test) (const char),
-    char * buffer) {
+    char * buffer,
+    const bool (*test) (const char)) {
 
     int i = 0;
 

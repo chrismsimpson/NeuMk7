@@ -102,7 +102,7 @@ void printDir() {
 
     char componentBuffer[scanner.bufferSize];
 
-    nextWhile(&scanner, isComponentPart, componentBuffer);
+    nextWhile(&scanner, componentBuffer, isComponentPart);
 
     printf("componentBuffer: %s\n\n", componentBuffer);
 }

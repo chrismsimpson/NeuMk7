@@ -50,8 +50,8 @@ extern const struct OptionalChar next(
 
 extern void nextWhile(
     struct Scanner * scanner,
-    const bool (*test) (const char),
-    char * buffer);
+    char * buffer,
+    const bool (*test) (const char));
 
 ///
 
