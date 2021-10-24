@@ -2,14 +2,22 @@
 
 struct PathTokenizer initPathTokenizer(
     const char * source, 
-    const size_t length,
-    const size_t bufferSize) {
+    const size_t sourceLength,
+    const size_t sourceLimit,
+    struct PathToken * tokens,
+    const size_t tokensLength) {
 
-    return initPathTokenizerWithScanner(initScanner(source, length, bufferSize));
+    return initPathTokenizerWithScanner(initScanner(source, sourceLength, sourceLimit), tokens, tokensLength);
 }
 
 struct PathTokenizer initPathTokenizerWithScanner(
-    struct Scanner scanner) {
+    struct Scanner scanner,
+    struct PathToken * tokens,
+    const size_t length) {
+
+    struct SpanOfPathTokens span = {tokens, length};
+
+    ///
 
     struct PathTokenizer tokenizer = {scanner};
 
@@ -17,6 +25,24 @@ struct PathTokenizer initPathTokenizerWithScanner(
 
     return tokenizer;
 }
+
+///
+
+// bool isPathTokenizerAtEof(
+//     struct PathTokenizer * tokenizer) {
+
+//     const struct SourceLocation tokenizerLocation = 
+// }
+
+///
+
+// struct SourceLocation pathTokenizerLocation(
+//     struct PathTokenizer * tokenizer) {
+
+//     if (tokenizer.pos) {
+
+//     }
+// }
 
 ///
 
@@ -52,7 +78,7 @@ const struct PathToken unsafeTokenizePathComponent(
 
     const bool (*isComponentPart) (const char) = &isPathComponentPart;
 
-    char componentBuffer[tokenizer->scanner.bufferSize];
+    char componentBuffer[tokenizer->scanner.limit];
 
     const size_t read = nextWhile(&tokenizer->scanner, componentBuffer, isComponentPart);
 

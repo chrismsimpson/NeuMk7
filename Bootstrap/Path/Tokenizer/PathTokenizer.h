@@ -1,9 +1,11 @@
 #ifndef PATH_TOKENIZER_H
 #define PATH_TOKENIZER_H
 
+#include <stdbool.h>
 #include <limits.h>
 
 #include "../../Scanner.h"
+#include "../../SourceLocation.h"
 
 #include "../Tokens/PathComponent.h"
 #include "../Tokens/PathPunc.h"
@@ -12,17 +14,37 @@
 struct PathTokenizer {
 
     struct Scanner scanner;
+
+    // struct SpanOfPathTokens tokens;
 };
 
 ///
 
 extern struct PathTokenizer initPathTokenizer(
     const char * source, 
-    const size_t length,
-    const size_t bufferSize);
+    const size_t sourceLength,
+    const size_t sourceLimit,
+    struct PathToken * tokens,
+    const size_t tokensLength);
 
 extern struct PathTokenizer initPathTokenizerWithScanner(
-    struct Scanner scanner);
+    struct Scanner scanner,
+    struct PathToken * tokens,
+    const size_t length);
+
+///
+
+
+
+// extern bool isPathTokenizerAtEof(
+//     struct PathTokenizer * tokenizer);
+
+
+///
+
+// extern struct SourceLocation pathTokenizerLocation(
+//     struct PathTokenizer * tokenizer);
+
 
 ///
 

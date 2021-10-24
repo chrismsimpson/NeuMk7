@@ -3,20 +3,20 @@
 struct Scanner initScanner(
     const char * source, 
     const size_t length,
-    const size_t bufferSize) {
+    const size_t limit) {
 
     struct String s = {source, length};
 
     ///
 
-    return initScannerFromString(s, bufferSize);
+    return initScannerFromString(s, limit);
 }
 
 struct Scanner initScannerFromString(
     const struct String source,
-    const size_t bufferSize) {
+    const size_t limit) {
 
-    struct Scanner scanner = {source, bufferSize, 0, 1, 1};
+    struct Scanner scanner = {source, limit, 0, 1, 1};
 
     ///
 
@@ -121,7 +121,7 @@ const size_t nextWhile(
 
         ///
 
-        if (i >= scanner->bufferSize) {
+        if (i >= scanner->limit) {
 
             printf("warn: reached scanner buffer size");
 

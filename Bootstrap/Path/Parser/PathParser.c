@@ -1,16 +1,24 @@
 #include "PathParser.h"
 
-struct PathParser initPathParser(
-    const char * source, 
-    const size_t length, 
-    const size_t bufferSize) {
+void initPathParser(
+    const char * source,
+    const size_t sourceLength,
+    const size_t sourceLimit,
+    struct PathToken * tokens,
+    const size_t tokensLimit) {
 
-    struct PathParser parser = {initPathTokenizer(source, length, bufferSize)};
-
-    ///
-
-    return parser;
+    
 }
+//     const char * source, 
+//     const size_t length, 
+//     const size_t limit) {
+
+//     struct PathParser parser = {initPathTokenizer(source, length, limit)};
+
+//     ///
+
+//     return parser;
+// }
 
 ///
 
@@ -18,5 +26,7 @@ void parsePathTokens(
     struct PathParser * parser,
     struct PathToken * tokens) {
 
-    
+    // while () {
+
+    // }
 }

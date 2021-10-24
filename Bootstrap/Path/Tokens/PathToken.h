@@ -41,6 +41,13 @@ struct OptionalPathToken {
     const struct PathToken value;
 };
 
+struct SpanOfPathTokens {
+
+    const struct PathToken * tokens;
+
+    const size_t length;
+};
+
 ///
 
 extern struct PathToken initPathTokenFromComponent(

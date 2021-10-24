@@ -61,17 +61,24 @@ void printParser() {
 
     getcwd(pathBuffer, sizeof(pathBuffer));
 
-    const size_t length = strlen(pathBuffer);
-
-    ///
-
-    struct PathParser parser = initPathParser(pathBuffer, length, PATH_MAX);
+    const size_t pathLength = strlen(pathBuffer);
 
     ///
 
     struct PathToken tokens[PATH_MAX];
 
-    parsePathTokens(&parser, tokens);
+    ///
+
+    initPathParser(pathBuffer, pathLength, PATH_MAX, tokens, PATH_MAX);
+    
+
+    // struct PathParser parser = initPathParser(pathBuffer, length, PATH_MAX, tokens, PATH_MAX);
+
+    ///
+
+    // struct PathToken tokens[PATH_MAX];
+
+    // parsePathTokens(&parser, tokens);
 
 
 
@@ -91,7 +98,11 @@ void printTokenizer() {
 
     ///
 
-    struct PathTokenizer tokenizer = initPathTokenizer(pathBuffer, length, PATH_MAX);
+    struct PathToken tokens[PATH_MAX];
+
+    ///
+
+    struct PathTokenizer tokenizer = initPathTokenizer(pathBuffer, length, PATH_MAX, tokens, PATH_MAX);
 
     ///
 
@@ -155,7 +166,7 @@ void printDir() {
 
     const bool (*isComponentPart) (const char) = &isPathComponentPart;
 
-    char componentBuffer[scanner.bufferSize];
+    char componentBuffer[scanner.limit];
 
     const size_t read = nextWhile(&scanner, componentBuffer, isComponentPart);
 

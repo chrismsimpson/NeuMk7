@@ -12,7 +12,7 @@ struct Scanner {
 
     const struct String source;
 
-    const size_t bufferSize;
+    const size_t limit;
 
     ///
 
@@ -34,11 +34,11 @@ extern void incrementScannerForChar(
 extern struct Scanner initScanner(
     const char * source, 
     const size_t length,
-    const size_t bufferSize);
+    const size_t limit);
 
 extern struct Scanner initScannerFromString(
     const struct String source,
-    const size_t bufferSize);
+    const size_t limit);
 
 ///
 

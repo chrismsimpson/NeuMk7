@@ -36,6 +36,7 @@ struct String {
     const char * source;
 
     const size_t length;
+
 };
 
 struct OptionalString {
