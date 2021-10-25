@@ -1,6 +1,7 @@
 project (main)
 
 add_executable(main
+    Neu/Tokenizer/NeuTokenizer.c
     Neu/Tokens/NeuToken.c
     Neu/Tokens/NeuKeyword.c
     Path/Parser/PathParser.c
