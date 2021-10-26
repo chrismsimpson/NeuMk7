@@ -1,10 +1,12 @@
 
+#include <inttypes.h>
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "Common.h"
 #include "Scanner.h"
@@ -30,6 +32,10 @@ int main() {
 
 void printFile(
     const char * filename) {
+
+    struct timespec start, end;
+
+    clock_gettime(CLOCK_MONOTONIC_RAW, &start);
 
     printf("//\n// File stuffs\n//\n\n");
 
@@ -70,4 +76,26 @@ void printFile(
     ///
 
     printf("source: %s\n", tokenizer.scanner.source.source);
+
+    ///
+
+    bool match = scannerMatch(&tokenizer.scanner, 'c', 3);
+
+    printf("match: %s\n", match ? "true" : "false");
+
+    ///
+
+    // char buf2[32];
+
+    // scannerNextLength(&tokenizer.scanner, buf2, 4);
+
+    // printf("buffer: %s\n", buf2);
+
+    ///
+
+    clock_gettime(CLOCK_MONOTONIC_RAW, &end);
+
+    uint64_t d = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
+
+    printf("time taken: %" PRIu64 "ms\n", d);
 }

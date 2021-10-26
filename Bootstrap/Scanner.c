@@ -57,7 +57,8 @@ void scannerIncrementWithChar(
 const bool scannerIsAtEof(
     const struct Scanner * scanner) {
 
-    return scanner->position >= scanner->source.length;
+    // return scanner->position >= scanner->source.length;
+    return scanner->position > scanner->source.length;
 }
 
 ///
@@ -71,6 +72,48 @@ const struct SourceLocation scannerLocation(
     ///
 
     return l;
+}
+
+///
+
+const bool scannerMatch(
+    struct Scanner * scanner,
+    const char c,
+    const size_t distance) {
+
+    if (scannerIsAtEof(scanner)) {
+
+        return false;
+    }
+
+    ///
+
+    size_t end = scanner->position + distance + 1;
+
+    // if (end >= scanner->source.length) {
+    if (end > scanner->source.length) {
+
+        return false;
+    }
+
+    ///
+
+    char buffer[distance + 1];
+
+    size_t read = scannerNextLength(scanner, buffer, distance + 1);
+
+    if (read != distance + 1) {
+
+        printf("warn: read bytes does not match bytes requested\n");
+
+        return false;
+    }
+
+    ///
+
+    char n = buffer[distance];
+
+    return n == c;
 }
 
 ///
@@ -90,6 +133,56 @@ const struct OptionalChar scannerNext(
     ///
 
     return c;
+}
+
+const size_t scannerNextLength(
+    struct Scanner * scanner,
+    char * buffer,
+    const size_t length) {
+
+    size_t i = 0;
+
+    ///
+
+    while (!scannerIsAtEof(scanner) && i < length) {
+
+        const struct OptionalChar c = scannerNext(scanner);
+
+        if (c.option == none) {
+
+            printf("warn: unexpected nil char\n");
+
+            return i;
+        }
+
+        ///
+
+        buffer[i] = c.value;
+
+        ///
+
+        i++;
+
+        ///
+
+        if (i >= scanner->source.limit) {
+
+            if (i < length) {
+
+                printf("warn: reached scanner buffer size\n");
+            }
+            
+            break;
+        }
+    }
+
+    ///
+
+    buffer[i] = '\0';
+
+    ///
+
+    return i;
 }
 
 const size_t scannerNextWhile(
@@ -126,7 +219,7 @@ const size_t scannerNextWhile(
 
             printf("warn: reached scanner buffer size");
 
-            return i;
+            break;
         }
     }
 

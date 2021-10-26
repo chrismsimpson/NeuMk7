@@ -49,8 +49,20 @@ extern const struct SourceLocation scannerLocation(
 
 ///
 
+extern const bool scannerMatch(
+    struct Scanner * scanner,
+    const char c,
+    const size_t distance);
+
+///
+
 extern const struct OptionalChar scannerNext(
     struct Scanner * scanner);
+
+extern const size_t scannerNextLength(
+    struct Scanner * scanner,
+    char * buffer,
+    const size_t length);
 
 extern const size_t scannerNextWhile(
     struct Scanner * scanner,
